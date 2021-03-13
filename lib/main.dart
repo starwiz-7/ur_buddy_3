@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import './profile/screens/profile_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,11 +23,13 @@ class MyApp extends StatelessWidget {
         appBarTheme: AppBarTheme(
           elevation: 0,
           backwardsCompatibility: false,
+          iconTheme: IconThemeData(color: accentWhite,size: 24),
           titleTextStyle: TextStyle(
             fontFamily: 'Montserrat',
             color: accentWhite,
             fontSize: 24,
             fontWeight: FontWeight.w600,
+            
           ),
           color: primaryBlack,
           systemOverlayStyle: SystemUiOverlayStyle(
@@ -35,6 +38,11 @@ class MyApp extends StatelessWidget {
           ),
         ),
         textTheme: TextTheme(
+          headline1: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: accentWhite,
+          ),
           headline4: TextStyle(
             fontSize: 34,
             fontWeight: FontWeight.bold,
@@ -48,7 +56,8 @@ class MyApp extends StatelessWidget {
         ),
 
       ),
-      home: MyHomePage(title: 'Good Morning'),
+      //home: MyHomePage(title: 'Good Morning'),
+      home: ProfilePage(),
     );
   }
 }
