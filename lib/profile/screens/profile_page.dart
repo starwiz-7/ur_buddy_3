@@ -17,7 +17,7 @@ class ProfilePage extends StatelessWidget {
           onPressed: null,
           child: Text(
             "Edit",
-            style: Theme.of(context).textTheme.headline1,
+            style: Theme.of(context).textTheme.headline6,
           ),
         ),
         actions: [
