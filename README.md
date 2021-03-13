@@ -1,6 +1,26 @@
 # ur_buddy_3
 
-A new Flutter project.
+Upgarde for current ur buddy app of IIIT Kottayam. A complete redo with brand new features
+
+##  Development environment setup:
+
+- Download and install mentioned version of flutter: Flutter 2.0.1 • channel stable • https://github.com/flutter/flutter.git
+Framework • revision c5a4b4029c (8 days ago) • 2021-03-04 09:47:48 -0800
+Engine • revision 40441def69
+Tools • Dart 2.12.0
+- flutter pub get
+- install your favourite IDE (android studio or visual code) 
+- install flutter related plugins
+
+You are ready to contribute to this project.
+
+## How to contribute to this project:
+
+- Clone this project in you local repo : git clone <repo url>
+- Create a branch from development branch, add you features 
+- Place a merge request with your changes into development branch (assign reviewer)
+- After review your feature will be rolled out in next release.
+
 
 ## Getting Started
 
