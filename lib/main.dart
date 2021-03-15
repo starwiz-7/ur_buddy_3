@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ur_buddy_3/auth/screens/login_screen.dart';
 import './profile/screens/profile_page.dart';
 
 void main() {
@@ -54,10 +55,8 @@ class MyApp extends StatelessWidget {
             color: accentWhite,
           ),
         ),
-
       ),
-      //home: MyHomePage(title: 'Good Morning'),
-      home: ProfilePage(),
+      home: LoginScreen(),
     );
   }
 }
