@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ur_buddy_3/auth/screens/login_screen.dart';
+import './profile/screens/profile_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,11 +24,13 @@ class MyApp extends StatelessWidget {
         appBarTheme: AppBarTheme(
           elevation: 0,
           backwardsCompatibility: false,
+          iconTheme: IconThemeData(color: accentWhite,size: 24),
           titleTextStyle: TextStyle(
             fontFamily: 'Montserrat',
             color: accentWhite,
             fontSize: 24,
             fontWeight: FontWeight.w600,
+            
           ),
           color: primaryBlack,
           systemOverlayStyle: SystemUiOverlayStyle(
@@ -36,6 +39,11 @@ class MyApp extends StatelessWidget {
           ),
         ),
         textTheme: TextTheme(
+          headline6: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: accentWhite,
+          ),
           headline4: TextStyle(
             fontSize: 34,
             fontWeight: FontWeight.bold,
