@@ -29,13 +29,20 @@ class _CustomTextFieldState extends State<CustomTextField> {
   Widget build(BuildContext context) {
     final _theme = Theme.of(context);
     final _focus = FocusScope.of(context);
+    const _simpleBorder = OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(12)),
+      borderSide: BorderSide(color: Color(0xFF25242C), width: 2),
+    );
+    final _errorBorder = OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(12)),
+      borderSide: BorderSide(color: _theme.errorColor, width: 2),
+    );
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 15),
       child: TextFormField(
         onChanged: widget.onChanged,
         validator: widget.validator,
         onEditingComplete: () {
-          print("HIIEL");
           if (widget.isLast) {
             _focus.unfocus();
           } else {
@@ -49,14 +56,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
           isDense: true,
           labelText: widget.label,
           fillColor: Color(0xFF1E1C24),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(12)),
-            borderSide: BorderSide(color: Color(0xFF25242C), width: 2),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(12)),
-            borderSide: BorderSide(color: Color(0xFF25242C), width: 2),
-          ),
+          enabledBorder: _simpleBorder,
+          focusedBorder: _simpleBorder,
+          errorBorder: _errorBorder,
+          focusedErrorBorder: _errorBorder,
           filled: true,
           labelStyle: TextStyle(
             fontFamily: 'Montserrat',
