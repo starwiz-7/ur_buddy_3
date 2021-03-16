@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/alternate_auth_selector_button.dart';
+import '../screens/signup_screen.dart';
 import '../../common_widgets/custom_textField.dart';
 import '../../common_widgets/custom_flatButton.dart';
 
@@ -109,6 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             AlternateAuthSelectorButton(
+              onTap: () => Navigator.of(context).pushNamed(SignUpScreen.routeName),
               text1: 'Don’t have an account? ',
               text2: 'Register',
             )

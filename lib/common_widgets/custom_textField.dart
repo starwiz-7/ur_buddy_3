@@ -37,6 +37,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       borderRadius: BorderRadius.all(Radius.circular(12)),
       borderSide: BorderSide(color: _theme.errorColor, width: 2),
     );
+    
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 15),
       child: TextFormField(
