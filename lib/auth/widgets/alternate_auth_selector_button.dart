@@ -22,6 +22,9 @@ class AlternateAuthSelectorButton extends StatelessWidget {
               minimumSize: MaterialStateProperty.all<Size>(
                 Size(double.infinity, 0),
               ),
+              overlayColor: MaterialStateProperty.all<Color>(
+                Colors.transparent,
+              ),
             ),
             onPressed: onTap,
             child: RichText(
