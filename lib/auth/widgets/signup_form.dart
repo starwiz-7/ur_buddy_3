@@ -13,7 +13,12 @@ class _SignUpFormState extends State<SignUpForm> {
   var _password = '';
   var _confirmPass = '';
 
+  final _formKey = GlobalKey<FormState>();
+
   void _signUp(){
+
+    _formKey.currentState.validate();
+
     print(_name);
     print(_email);
     print(_password);
@@ -23,6 +28,7 @@ class _SignUpFormState extends State<SignUpForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: _formKey,
       child: Column(
         children: [
           CustomTextField(
