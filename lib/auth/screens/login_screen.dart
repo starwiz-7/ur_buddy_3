@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/alternate_auth_selector_button.dart';
-<<<<<<< HEAD
-=======
 import '../screens/signup_screen.dart';
->>>>>>> development
 import '../widgets/login_form.dart';
 
 class LoginScreen extends StatefulWidget {
