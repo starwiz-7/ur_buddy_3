@@ -4,6 +4,7 @@ import '../screens/signup_screen.dart';
 import '../widgets/login_form.dart';
 
 class LoginScreen extends StatefulWidget {
+  static const routeName = '/login-screen';
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
