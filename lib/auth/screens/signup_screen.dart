@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ur_buddy_3/auth/screens/login_screen.dart';
 import '../widgets/alternate_auth_selector_button.dart';
 import '../widgets/signup_form.dart';
 
@@ -42,6 +43,7 @@ class SignUpScreen extends StatelessWidget {
             AlternateAuthSelectorButton(
               text1: 'Already have an account? ',
               text2: 'Sign in',
+              onTap: () => Navigator.of(context).pushReplacementNamed(LoginScreen.routeName),
             )
           ],
         ),
