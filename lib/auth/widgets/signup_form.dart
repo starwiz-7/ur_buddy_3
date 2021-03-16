@@ -58,6 +58,7 @@ class _SignUpFormState extends State<SignUpForm> {
             },
           ),
           CustomTextField(
+            isPassword: true,
             label: 'Password',
             onChanged: (value) {
               _password = value;
@@ -70,6 +71,8 @@ class _SignUpFormState extends State<SignUpForm> {
             },
           ),
           CustomTextField(
+            isLast: true,
+            isPassword: true,
             label: 'Confirm Password',
             onChanged: (value) {
               _confirmPass = value;

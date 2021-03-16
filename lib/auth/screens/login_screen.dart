@@ -56,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             AlternateAuthSelectorButton(
-              onTap: () => Navigator.of(context).pushNamed(SignUpScreen.routeName),
+              onTap: () => Navigator.of(context).pushReplacementNamed(SignUpScreen.routeName),
               text1: 'Don’t have an account? ',
               text2: 'Register',
             )
