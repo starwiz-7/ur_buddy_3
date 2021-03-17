@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:ur_buddy_3/auth/screens/login_screen.dart';
 import '../widgets/alternate_auth_selector_button.dart';
-import '../screens/signup_screen.dart';
-import '../widgets/login_form.dart';
+import '../widgets/signup_form.dart';
 
-class LoginScreen extends StatefulWidget {
-  static const routeName = '/login-screen';
-  @override
-  _LoginScreenState createState() => _LoginScreenState();
-}
+class SignUpScreen extends StatelessWidget {
+  static const routeName = '/signup-screen';
 
-class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final _theme = Theme.of(context);
@@ -26,39 +22,28 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     SizedBox(height: 70),
                     Text(
-                      "Let's sign you in.",
+                      "Let's Register.",
                       style: _theme.textTheme.headline4,
                     ),
                     SizedBox(height: 10),
                     Text(
-                      "Welcome back.",
+                      "Welcome.",
                       style: TextStyle(
                         fontSize: 30,
                         color: _theme.accentColor,
                       ),
                     ),
+                    SizedBox(height: 40),
+                    SignUpForm(),
                     SizedBox(height: 60),
-                    LogInForm(),
-                    SizedBox(height: 15),
-                    Center(
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          'Forgot Password?',
-                          style: TextStyle(
-                              color: Theme.of(context).accentColor,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               ),
             ),
             AlternateAuthSelectorButton(
-              onTap: () => Navigator.of(context).pushReplacementNamed(SignUpScreen.routeName),
-              text1: 'Don’t have an account? ',
-              text2: 'Register',
+              text1: 'Already have an account? ',
+              text2: 'Sign in',
+              onTap: () => Navigator.of(context).pushReplacementNamed(LoginScreen.routeName),
             )
           ],
         ),
