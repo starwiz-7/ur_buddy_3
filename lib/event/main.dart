@@ -47,7 +47,7 @@ class ProfilePage extends StatelessWidget{
        title: Text(
          'Organise Event',
          style: TextStyle(
-           fontSize:30,
+           fontSize:28,
             letterSpacing:1.5,
             color: Colors.white,
             fontWeight: FontWeight.w600,
