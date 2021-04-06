@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:ur_buddy_3/buy_sell/widgets/CustomTextField2.dart';
+import 'package:ur_buddy_3/buy_sell/widgets/price_condition_row.dart';
+import 'package:ur_buddy_3/buy_sell/widgets/title_image_row.dart';
 import 'package:ur_buddy_3/common_widgets/custom_flatButton.dart';
-import 'image_input.dart';
 
 
 
@@ -19,32 +19,7 @@ class SellPageBody extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ImageInput(),
-                SizedBox(
-                  height: MediaQuery.of(context).size.longestSide / 4,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Container(
-                        width: MediaQuery.of(context).size.longestSide / 3.5,
-                        child: CustomTextField(
-                          label: 'Title',
-                        ),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.longestSide / 3.5,
-                        child: CustomTextField(
-                          label: 'Subtitle',
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+            TitleImageRow(),
             SizedBox(
               height: 10,
             ),
@@ -59,41 +34,7 @@ class SellPageBody extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width / 3,
-                  child: CustomTextField(
-                    label: 'Price',
-                    hasPrefix: true,
-                    hasNumInput: true,
-                    prefixIcon: FontAwesomeIcons.rupeeSign,
-                  ),
-                ),
-                SizedBox(
-                  width: 30,
-                ),
-                Text(
-                  'Condition',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText1
-                      .copyWith(fontSize: 20),
-                ),
-                SizedBox(
-                  width: 20,
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width / 4.2,
-                  child: CustomTextField(
-                    hasSuffix: true,
-                    hasNumInput: true,
-                    suffixtext: ' / 5',
-                  ),
-                ),
-              ],
-            ),
+            PriceConditionRow(),
             SizedBox(
               height: 100,
             ),
