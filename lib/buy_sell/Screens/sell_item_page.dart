@@ -1,7 +1,9 @@
-import 'package:ur_buddy_3/common_widgets/custom_flatButton.dart';
-import 'package:ur_buddy_3/buy_sell/widgets/CustomTextField2.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'package:ur_buddy_3/common_widgets/custom_flatButton.dart';
+import 'package:ur_buddy_3/buy_sell/widgets/CustomTextField2.dart';
+import 'package:ur_buddy_3/buy_sell/widgets/image_input.dart';
 
 class SellItemPage extends StatelessWidget {
   @override
@@ -131,29 +133,6 @@ class SellPageBody extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class ImageInput extends StatelessWidget {
-  const ImageInput({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.longestSide / 4.5,
-      width: MediaQuery.of(context).size.longestSide / 4.5,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5),
-        color: Color(0XFFC4C4C4),
-      ),
-      child: Icon(
-        Icons.add_a_photo_outlined,
-        color: Color(0XFFFDF4F4),
-        size: MediaQuery.of(context).size.shortestSide / 8,
       ),
     );
   }
