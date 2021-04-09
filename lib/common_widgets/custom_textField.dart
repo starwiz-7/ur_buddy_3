@@ -8,8 +8,20 @@ class CustomTextField extends StatefulWidget {
   final String errorText;
   final bool isLast;
   final Function(String value) validator;
+  final int maxlines;
+  final bool hasPrefix;
+  final bool hasNumInput;
+  final bool hasSuffix;
+  final IconData prefixIcon;
+  final String suffixtext;
 
   CustomTextField({
+    this.suffixtext,
+    this.prefixIcon,
+    this.hasSuffix = false,
+    this.hasNumInput = false,
+    this.hasPrefix = false,
+    this.maxlines = 1,
     this.label,
     this.isPassword = false,
     this.onChanged,
@@ -37,10 +49,12 @@ class _CustomTextFieldState extends State<CustomTextField> {
       borderRadius: BorderRadius.all(Radius.circular(12)),
       borderSide: BorderSide(color: _theme.errorColor, width: 2),
     );
-    
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 15),
       child: TextFormField(
+        keyboardType:
+            widget.hasNumInput ? TextInputType.number : TextInputType.text,
         onChanged: widget.onChanged,
         validator: widget.validator,
         onEditingComplete: () {
@@ -54,6 +68,16 @@ class _CustomTextFieldState extends State<CustomTextField> {
         textInputAction:
             widget.isLast ? TextInputAction.done : TextInputAction.next,
         decoration: InputDecoration(
+          suffixText: widget.hasSuffix ? widget.suffixtext : null,
+          suffixStyle:
+              Theme.of(context).textTheme.bodyText1.copyWith(fontSize: 20),
+          prefixIcon: widget.hasPrefix
+              ? Icon(
+                  widget.prefixIcon,
+                  color: Colors.white,
+                  size: 22,
+                )
+              : null,
           isDense: true,
           labelText: widget.label,
           fillColor: Color(0xFF1E1C24),
@@ -67,27 +91,12 @@ class _CustomTextFieldState extends State<CustomTextField> {
             fontWeight: FontWeight.w500,
             color: _theme.accentColor.withOpacity(0.5),
           ),
-          suffixIcon: widget.isPassword
-              ? IconButton(
-                  icon: Icon(_showPassword
-                      ? Icons.remove_red_eye
-                      : Icons.remove_red_eye_outlined),
-                  iconSize: 30,
-                  color: _theme.accentColor.withOpacity(0.5),
-                  highlightColor: Colors.transparent,
-                  splashColor: Colors.transparent,
-                  onPressed: () {
-                    setState(() {
-                      _showPassword = !_showPassword;
-                    });
-                  },
-                )
-              : null,
         ),
         style: TextStyle(
           color: _theme.accentColor,
           fontWeight: FontWeight.w500,
         ),
+        maxLines: widget.maxlines,
       ),
     );
   }

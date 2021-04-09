@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ur_buddy_3/common_widgets/CustomTextField2.dart';
+import 'package:ur_buddy_3/common_widgets/custom_textField.dart';
 
  class OrganisedRow extends StatelessWidget {
   const OrganisedRow({
