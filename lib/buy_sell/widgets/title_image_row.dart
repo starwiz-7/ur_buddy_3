@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:ur_buddy_3/buy_sell/widgets/CustomTextField2.dart';
+
 import 'package:ur_buddy_3/buy_sell/widgets/image_input.dart';
+import 'package:ur_buddy_3/common_widgets/custom_textField.dart';
 
 class TitleImageRow extends StatelessWidget {
   const TitleImageRow({
@@ -15,18 +16,18 @@ class TitleImageRow extends StatelessWidget {
       children: [
         ImageInput(),
         SizedBox(
-          height: MediaQuery.of(context).size.longestSide / 4,
+          height: MediaQuery.of(context).size.height / 4,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Container(
-                width: MediaQuery.of(context).size.longestSide / 3.5,
+                width: MediaQuery.of(context).size.width / 2,
                 child: CustomTextField(
                   label: 'Title',
                 ),
               ),
               Container(
-                width: MediaQuery.of(context).size.longestSide / 3.5,
+                width: MediaQuery.of(context).size.width / 2,
                 child: CustomTextField(
                   label: 'Subtitle',
                 ),

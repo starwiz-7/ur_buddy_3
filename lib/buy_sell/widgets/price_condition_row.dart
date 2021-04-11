@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import 'package:ur_buddy_3/buy_sell/widgets/CustomTextField2.dart';
+import 'package:ur_buddy_3/common_widgets/custom_textField.dart';
 
 class PriceConditionRow extends StatelessWidget {
   const PriceConditionRow({
@@ -27,10 +26,7 @@ class PriceConditionRow extends StatelessWidget {
         ),
         Text(
           'Condition',
-          style: Theme.of(context)
-              .textTheme
-              .bodyText1
-              .copyWith(fontSize: 20),
+          style: Theme.of(context).textTheme.bodyText1.copyWith(fontSize: 20),
         ),
         SizedBox(
           width: 20,
@@ -40,11 +36,10 @@ class PriceConditionRow extends StatelessWidget {
           child: CustomTextField(
             hasSuffix: true,
             hasNumInput: true,
-            suffixtext: ' / 5',
+            suffixtext: ' / 5  ',
           ),
         ),
       ],
     );
   }
 }
-

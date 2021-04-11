@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:ur_buddy_3/buy_sell/widgets/CustomTextField2.dart';
+
 import 'package:ur_buddy_3/buy_sell/widgets/price_condition_row.dart';
 import 'package:ur_buddy_3/buy_sell/widgets/title_image_row.dart';
 import 'package:ur_buddy_3/common_widgets/custom_flatButton.dart';
+import 'package:ur_buddy_3/common_widgets/custom_textField.dart';
 
 
 
