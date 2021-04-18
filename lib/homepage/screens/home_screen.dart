@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ur_buddy_3/buy_sell/screens/sell_item_page.dart';
-import 'package:ur_buddy_3/homepage/widgets/menu_icon.dart';
 import 'package:ur_buddy_3/profile/screens/profile_page.dart';
 class HomeScreen extends StatefulWidget {
   static const routeName = '/home-screen';
@@ -33,15 +32,15 @@ class _HomeScreenState extends State<HomeScreen> {
           unselectedItemColor: Theme.of(context).accentColor,
         items:[
           new BottomNavigationBarItem(
-              icon: _currentIndex == 0? menuIcon(icon : Icons.home):menuIcon(icon : Icons.home_outlined),
+              icon: _currentIndex == 0? Icon(Icons.home):Icon(Icons.home_outlined),
               label: _currentIndex == 0?'Events':''
           ),
           new BottomNavigationBarItem(
-              icon: _currentIndex == 1? menuIcon(icon : Icons.shopping_cart):menuIcon(icon : Icons.shopping_cart_outlined),
+              icon: _currentIndex == 1? Icon(Icons.shopping_cart):Icon(Icons.shopping_cart_outlined),
               label: _currentIndex == 1?'Classified':''
           ),
           new BottomNavigationBarItem(
-              icon: _currentIndex == 2? menuIcon(icon : Icons.account_circle): menuIcon(icon : Icons.account_circle_outlined),
+              icon: _currentIndex == 2? Icon(Icons.account_circle): Icon(Icons.account_circle_outlined),
               label: _currentIndex == 2?'Account':''
           ),
         ]
