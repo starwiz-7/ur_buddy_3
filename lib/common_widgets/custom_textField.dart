@@ -78,6 +78,22 @@ class _CustomTextFieldState extends State<CustomTextField> {
                   size: 22,
                 )
               : null,
+          suffixIcon: widget.isPassword
+              ? IconButton(
+                  icon: Icon(_showPassword
+                      ? Icons.remove_red_eye
+                      : Icons.remove_red_eye_outlined),
+                  iconSize: 30,
+                  color: _theme.accentColor.withOpacity(0.5),
+                  highlightColor: Colors.transparent,
+                  splashColor: Colors.transparent,
+                  onPressed: () {
+                    setState(() {
+                      _showPassword = !_showPassword;
+                    });
+                  },
+                )
+              : null,
           isDense: true,
           labelText: widget.label,
           fillColor: Color(0xFF1E1C24),
