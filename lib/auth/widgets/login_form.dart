@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ur_buddy_3/homepage/screens/home_screen.dart';
 import '../../common_widgets/custom_flatButton.dart';
 import '../../common_widgets/custom_textField.dart';
 
@@ -18,6 +19,7 @@ class _LogInFormState extends State<LogInForm> {
       _formKey.currentState.validate();
       print(_email);
       print(_password);
+      Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
     } on Exception catch (e) {
       print("ERROR : $e");
     }
