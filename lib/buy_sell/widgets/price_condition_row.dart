@@ -13,7 +13,7 @@ class PriceConditionRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Container(
-          width: MediaQuery.of(context).size.width / 3,
+          width: MediaQuery.of(context).size.width / 3.2,
           child: CustomTextField(
             label: 'Price',
             hasPrefix: true,
@@ -22,7 +22,7 @@ class PriceConditionRow extends StatelessWidget {
           ),
         ),
         SizedBox(
-          width: 30,
+          width: 20,
         ),
         Text(
           'Condition',
@@ -32,12 +32,16 @@ class PriceConditionRow extends StatelessWidget {
           width: 20,
         ),
         Container(
-          width: MediaQuery.of(context).size.width / 4.2,
+          width: MediaQuery.of(context).size.width / 5,
+          height: MediaQuery.of(context).size.width / 5,
           child: CustomTextField(
             hasSuffix: true,
             hasNumInput: true,
             suffixtext: ' / 5  ',
           ),
+        ),
+        SizedBox(
+          width: 10,
         ),
       ],
     );

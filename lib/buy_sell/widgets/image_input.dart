@@ -8,8 +8,8 @@ class ImageInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.longestSide / 4.5,
-      width: MediaQuery.of(context).size.longestSide / 4.5,
+      height: MediaQuery.of(context).size.width / 2.5,
+      width: MediaQuery.of(context).size.width / 2.5,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
         color: Color(0XFFC4C4C4),
