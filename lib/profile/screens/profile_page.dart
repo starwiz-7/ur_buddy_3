@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ur_buddy_3/profile/widgets/profile_detail_widget.dart';
 import '../../profile/widgets/profile_avatar.dart';
@@ -7,6 +8,7 @@ class ProfilePage extends StatelessWidget {
   String about = "This is the about section of profile page here you can write in brief about yourself";
   String email = "ackwickson169@hotmail.com";
   String hostel = "Boys Hostel 1, BAB114";
+  final _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +29,9 @@ class ProfilePage extends StatelessWidget {
               color: Theme.of(context).appBarTheme.iconTheme.color,
               size: 24,
             ),
-            onPressed: null,
+            onPressed: () async {
+              await _auth.signOut();
+            },
           ),
         ],
       ),
