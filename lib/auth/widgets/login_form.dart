@@ -58,6 +58,7 @@ class _LogInFormState extends State<LogInForm> {
                 onPressed: () async {
                   await authResult.user.sendEmailVerification();
                   await _auth.signOut();
+                  Navigator.of(context).pop();
                 }
             ),
             new TextButton(

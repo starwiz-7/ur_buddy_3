@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ur_buddy_3/auth/screens/login_screen.dart';
 import 'package:ur_buddy_3/profile/widgets/profile_detail_widget.dart';
 import '../../profile/widgets/profile_avatar.dart';
 
@@ -29,8 +30,24 @@ class ProfilePage extends StatelessWidget {
               color: Theme.of(context).appBarTheme.iconTheme.color,
               size: 24,
             ),
-            onPressed: () async {
-              await _auth.signOut();
+            onPressed: () {
+             _auth.signOut();
+             Navigator.pushAndRemoveUntil(
+                 context,
+                 PageRouteBuilder(pageBuilder: (BuildContext context, Animation animation,
+                     Animation secondaryAnimation) {
+                   return LoginScreen();
+                 }, transitionsBuilder: (BuildContext context, Animation<double> animation,
+                     Animation<double> secondaryAnimation, Widget child) {
+                   return new SlideTransition(
+                     position: new Tween<Offset>(
+                       begin: const Offset(1.0, 0.0),
+                       end: Offset.zero,
+                     ).animate(animation),
+                     child: child,
+                   );
+                 }),
+                     (Route route) => false);
             },
           ),
         ],
