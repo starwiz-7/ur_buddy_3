@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:ur_buddy_3/common_widgets/custom_textField.dart';
 import 'package:ur_buddy_3/common_widgets/custom_flatButton.dart';
 
+import 'organised_row.dart';
 
-import 'Organised_row.dart';
 class OrganiseEvent extends StatelessWidget {
+  static const routeName = '/organise-event';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +27,6 @@ class OrganiseEvent extends StatelessWidget {
             onPressed: () {},
           ),
         ),
-
         body: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -51,8 +51,7 @@ class OrganiseEvent extends StatelessWidget {
                   label: 'Event Name',
                 ),
               ),
-              
-             SizedBox(height: 5.0),
+              SizedBox(height: 5.0),
               OrganisedRow(),
               SizedBox(height: 5.0),
               Container(
@@ -81,5 +80,3 @@ class OrganiseEvent extends StatelessWidget {
         ));
   }
 }
-
-
