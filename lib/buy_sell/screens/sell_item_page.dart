@@ -9,24 +9,6 @@ class SellItemPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios_outlined),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-          title: Row(
-            children: [
-              SizedBox(
-                width: 30,
-              ),
-              Text(
-                'Sell New Item',
-              ),
-            ],
-          ),
-        ),
         body: SellPageBody(),
       ),
     );
