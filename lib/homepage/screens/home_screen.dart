@@ -35,15 +35,15 @@ class _HomeScreenState extends State<HomeScreen> {
         items:[
           new BottomNavigationBarItem(
               icon: _currentIndex == 0? Icon(Icons.home):Icon(Icons.home_outlined),
-              label: _currentIndex == 0?'Events':''
+              label: 'Events'
           ),
           new BottomNavigationBarItem(
               icon: _currentIndex == 1? Icon(Icons.shopping_cart):Icon(Icons.shopping_cart_outlined),
-              label: _currentIndex == 1?'Classified':''
+              label: 'Classified'
           ),
           new BottomNavigationBarItem(
               icon: _currentIndex == 2? Icon(Icons.account_circle): Icon(Icons.account_circle_outlined),
-              label: _currentIndex == 2?'Account':''
+              label:'Account'
           ),
         ]
       ),

@@ -5,9 +5,7 @@ class BuyItemPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: SafeArea(
+    return SafeArea(
         child: Container(
           child: Column(
             children: <Widget>[
@@ -58,7 +56,6 @@ class BuyItemPage extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 }
