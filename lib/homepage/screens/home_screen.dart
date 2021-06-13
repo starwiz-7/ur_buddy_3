@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ur_buddy_3/event/screens/event_page_dashboard.dart';
-import '../../buy_sell/screens/sell_item_page.dart';
+import '../../buy_sell/screens/buy_sell_page.dart';
+import '../../event/screens/event_page_dashboard.dart';
 import '../../profile/screens/profile_page.dart';
+
 class HomeScreen extends StatefulWidget {
   static const routeName = '/home-screen';
   @override
@@ -12,7 +13,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
   final List<Widget> _children =
   [EventPageDashboard(),
-    SellItemPage(),
+    BuySellPage(),
     ProfilePage()
   ];
   @override

@@ -20,6 +20,7 @@ class SellPageBody extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
+            SizedBox(height: 5),
             TitleImageRow(),
             SizedBox(
               height: 10,
@@ -46,6 +47,7 @@ class SellPageBody extends StatelessWidget {
                 onPressed: () => print('Item Put on Sale'),
               ),
             ),
+            SizedBox(height: 5),
           ],
         ),
       ),
