@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ur_buddy_3/profile/screens/edit_profile_screen.dart';
 import './buy_sell/screens/sell_item_page.dart';
 import './buy_sell/screens/buy_item_page.dart';
 import './event/screens/organise_event.dart';
@@ -70,7 +71,8 @@ class MyApp extends StatelessWidget {
         LoginScreen.routeName: (context) => LoginScreen(),
         HomeScreen.routeName: (context) => HomeScreen(),
         OrganiseEvent.routeName: (context) => OrganiseEvent(),
-        SellItemPage.routeName: (context) => SellItemPage()
+        SellItemPage.routeName: (context) => SellItemPage(),
+        EditProfile.routeName: (context) => EditProfile()
       },
     );
   }

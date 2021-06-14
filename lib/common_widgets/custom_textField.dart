@@ -14,6 +14,7 @@ class CustomTextField extends StatefulWidget {
   final bool hasSuffix;
   final IconData prefixIcon;
   final String suffixtext;
+  final initialValue;
 
   CustomTextField({
     this.suffixtext,
@@ -28,6 +29,7 @@ class CustomTextField extends StatefulWidget {
     this.validator,
     this.errorText,
     this.isLast = false,
+    this.initialValue
   });
 
   @override
@@ -113,6 +115,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           fontWeight: FontWeight.w500,
         ),
         maxLines: widget.maxlines,
+        initialValue: widget.initialValue,
       ),
     );
   }
