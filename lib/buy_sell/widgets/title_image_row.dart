@@ -3,8 +3,13 @@ import 'package:ur_buddy_3/buy_sell/widgets/image_input.dart';
 import 'package:ur_buddy_3/common_widgets/custom_textField.dart';
 
 class TitleImageRow extends StatelessWidget {
+  final Function(String value) onChangedTitle;
+  final Function(String value) onChangedSubTitle;
+
   const TitleImageRow({
     Key key,
+    this.onChangedTitle,
+    this.onChangedSubTitle,
   }) : super(key: key);
 
   @override
@@ -23,6 +28,7 @@ class TitleImageRow extends StatelessWidget {
                 height: MediaQuery.of(context).size.width / 5,
                 child: CustomTextField(
                   label: 'Title',
+                  onChanged: onChangedTitle,
                 ),
               ),
               Container(
@@ -30,6 +36,7 @@ class TitleImageRow extends StatelessWidget {
                 height: MediaQuery.of(context).size.width / 5,
                 child: CustomTextField(
                   label: 'Subtitle',
+                  onChanged: onChangedSubTitle,
                 ),
               ),
             ],
