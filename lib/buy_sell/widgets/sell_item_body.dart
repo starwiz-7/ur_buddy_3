@@ -6,7 +6,7 @@ import 'package:ur_buddy_3/buy_sell/widgets/title_image_row.dart';
 import 'package:ur_buddy_3/common_widgets/custom_flatButton.dart';
 import 'package:ur_buddy_3/common_widgets/custom_textField.dart';
 import 'package:ur_buddy_3/services/service_locator.dart';
-import 'package:ur_buddy_3/services/alternate_ad_miner_service.dart';
+import 'package:ur_buddy_3/services/classifieds_service.dart';
 import 'package:ur_buddy_3/models/classified.dart';
 
 class SellPageBody extends StatefulWidget {
@@ -26,7 +26,7 @@ class _SellPageBodyState extends State<SellPageBody> {
 
   bool _isLoading = false;
 
-  AlternateAdMinerService adMinerService = getIt<AlternateAdMinerService>();
+  ClassifiedsService _classifiedsService = getIt<ClassifiedsService>();
   Future<void> _submitClassified() async {
     if (_title.isEmpty ||
         _subTitle.isEmpty ||
@@ -35,10 +35,6 @@ class _SellPageBodyState extends State<SellPageBody> {
         _condition.isEmpty) {
       return;
     }
-    setState(() {
-      _isLoading = true;
-    });
-    FocusScope.of(context).unfocus();
     print("$_title, $_subTitle, $_description, $_price, $_condition");
     await Provider.of<ClassifiedsProvider>(
       context,
@@ -46,31 +42,35 @@ class _SellPageBodyState extends State<SellPageBody> {
     ).addClassified(
       Classified(null, _title, _subTitle, _description, _price, _condition),
     );
+  }
+
+  //Pre advertisement processing
+  _postingProcess() async {
+    setState(() {
+      _isLoading = true;
+    });
+    FocusScope.of(context).unfocus();
+    //check current add pool
+    int adPool = await _classifiedsService.isAdAvailable();
+    if (adPool == 0) {
+      if (await _classifiedsService.mineAd()) {
+        //post ad
+        _classifiedsService.decrementAdPool();
+        _submitClassified();
+      } else {
+        //No ads available
+        //TODO: Add popup for this
+        print("No ad quota available");
+      }
+    } else {
+      //post ad
+      _classifiedsService.decrementAdPool();
+      _submitClassified();
+    }
     setState(() {
       _isLoading = false;
     });
     Navigator.of(context).pop();
-  }
-
-  //Pre advertisement processing
-  _postingProcess() async{
-      //TODO: Start Loader
-      //check current add pool
-      int adPool = await adMinerService.isAdAvailable();
-      if(adPool==0){
-        if(await adMinerService.mineAd()) {
-          //post ad
-          _submitClassified();
-          adMinerService.decrementAdPool();
-        }else{
-          //No ads available
-          print("No ad quota available");
-        }
-      }else {
-        //post ad
-        _submitClassified();
-        adMinerService.decrementAdPool();
-      }
   }
 
   @override
