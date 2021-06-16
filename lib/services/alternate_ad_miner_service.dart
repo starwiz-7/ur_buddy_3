@@ -7,32 +7,28 @@ class AlternateAdMinerService {
   final _database = FirebaseDatabase.instance.reference();
 
   /* Check if ads are available in the pool
-  returns <number of ads available> or
-  0 if ads are not available but can be mined
-  and -1 if mining is not possible
+  returns <number of ads available>
   */
   Future<int> isAdAvailable() async{
     Map<String, dynamic> appSettings =await getAppSettings();
-    int status = -1;
-    if(appSettings["adPool"] > 0 || appSettings["adPool"]  == -1){
-      status = appSettings["adPool"];
-    }else if(appSettings["adPool"] == 0 &&
-        (appSettings["lastMined"]??0+ _oneDay) < new DateTime.now().microsecondsSinceEpoch){
-      //if ad update is done more that 24 hours ago
-      status = 0;
-    }
-    return status;
+    return appSettings["adPool"];
   }
 
-  mineAds(){
-    _database.child("3classifieds").orderByChild("timestamp")
-        .endAt(new DateTime.now().microsecondsSinceEpoch - 7*_oneDay).once().then((value) {
+  //Return true if ad mining is successful else false
+  Future<bool> mineAd(){
+    return _database.child("3classifieds").orderByChild("timestamp")
+        .endAt(new DateTime.now().microsecondsSinceEpoch - 9*_oneDay).limitToFirst(2).once().then((value) {
       Map<dynamic, dynamic> data = value.value;
       if(data!=null) {
         data.forEach((key, value) {
+          //TODO : delete
+          print("removing");
+          print(key);
           _database.child("3classifieds").child(key).remove().then((value) => incrementAdPool());
         });
+        return true;
       }
+      return false;
   }
     );
   }

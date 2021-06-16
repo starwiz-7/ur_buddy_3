@@ -52,31 +52,29 @@ class _SellPageBodyState extends State<SellPageBody> {
     Navigator.of(context).pop();
   }
 
+  //Pre advertisement processing
+  _postingProcess() async{
+      //TODO: Start Loader
+      //check current add pool
+      int adPool = await adMinerService.isAdAvailable();
+      if(adPool==0){
+        if(await adMinerService.mineAd()) {
+          //post ad
+          _submitClassified();
+          adMinerService.decrementAdPool();
+        }else{
+          //No ads available
+          print("No ad quota available");
+        }
+      }else {
+        //post ad
+        _submitClassified();
+        adMinerService.decrementAdPool();
+      }
+  }
+
   @override
   Widget build(BuildContext context) {
-    _postingProcess() async{
-      {
-        //TODO: Start Loader
-        //check current add pool
-        int adPool = await adMinerService.isAdAvailable();
-        if(adPool==0){
-          adMinerService.mineAds();
-        }else if(adPool==-1){
-          //send to sell page
-          print("sorry no add available");
-        }else{
-          //post ad
-          //TODO: do posting logic
-          adMinerService.decrementAdPool();
-        }
-      }
-    }
-    //TODO: clean up
-    testfunction() async{
-      adMinerService.decrementAdPool();
-      int adPool =await adMinerService.isAdAvailable();
-      print(adPool);
-    }
     return Padding(
       padding: const EdgeInsets.fromLTRB(13, 15, 13, 15),
       child: SingleChildScrollView(
@@ -127,8 +125,8 @@ class _SellPageBodyState extends State<SellPageBody> {
                     )
                   : CustomFlatButton(
                       label: 'Put On Sale',
-                      onPressed: () => adMinerService.mineAds(),
-                    ),//_submitClassified()
+                      onPressed: () => _postingProcess(),
+                    ),
             ),
             SizedBox(height: 5),
           ],
