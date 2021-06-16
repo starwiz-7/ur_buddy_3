@@ -30,11 +30,7 @@ class ClassifiedsService {
       if (data != null) {
         data.forEach((key, value) {
           log("removing ad id: " + key);
-          _database
-              .child("3classifieds")
-              .child(key)
-              .remove()
-              .then((value) => incrementAdPool());
+          removeAdvertisement(key);
         });
         return true;
       }
@@ -74,5 +70,14 @@ class ClassifiedsService {
       }
       return mutableData;
     });
+  }
+  //helper function to remove old ads
+  removeAdvertisement(key) {
+    _database
+        .child("3classifieds")
+        .child(key)
+        .remove()
+        .then((value) => incrementAdPool());
+    //TODO: Delete photos from bucket
   }
 }
