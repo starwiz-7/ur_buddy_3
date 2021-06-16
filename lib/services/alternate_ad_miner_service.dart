@@ -25,12 +25,14 @@ class AlternateAdMinerService {
   }
 
   mineAds(){
-    var oldAds = _database.child("3classifieds").orderByChild("timestamp")
-        .endAt(new DateTime.now().microsecondsSinceEpoch - 7*_oneDay).get().then((value) => {
-    for(var ad in value.value)
-    {
-      print(ad)
-    }
+    _database.child("3classifieds").orderByChild("timestamp")
+        .endAt(new DateTime.now().microsecondsSinceEpoch - 7*_oneDay).once().then((value) {
+      Map<dynamic, dynamic> data = value.value;
+      if(data!=null) {
+        data.forEach((key, value) {
+          _database.child("3classifieds").child(key).remove().then((value) => incrementAdPool());
+        });
+      }
   }
     );
   }

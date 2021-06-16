@@ -3,8 +3,13 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ur_buddy_3/common_widgets/custom_textField.dart';
 
 class PriceConditionRow extends StatelessWidget {
+  final Function(String value) onChangedPrice;
+  final Function(String value) onChangedCondition;
+
   const PriceConditionRow({
     Key key,
+    this.onChangedPrice,
+    this.onChangedCondition,
   }) : super(key: key);
 
   @override
@@ -19,6 +24,7 @@ class PriceConditionRow extends StatelessWidget {
             hasPrefix: true,
             hasNumInput: true,
             prefixIcon: FontAwesomeIcons.rupeeSign,
+            onChanged: onChangedPrice,
           ),
         ),
         SizedBox(
@@ -38,6 +44,7 @@ class PriceConditionRow extends StatelessWidget {
             hasSuffix: true,
             hasNumInput: true,
             suffixtext: ' / 5  ',
+            onChanged: onChangedCondition,
           ),
         ),
         SizedBox(
