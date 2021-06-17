@@ -1,8 +1,12 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ur_buddy_3/buy_sell/widgets/custom_slider.dart';
 
 import 'package:ur_buddy_3/buy_sell/widgets/price_condition_row.dart';
 import 'package:ur_buddy_3/buy_sell/widgets/title_image_row.dart';
+import 'package:ur_buddy_3/common_widgets/custom_alert_dialogue.dart';
 import 'package:ur_buddy_3/common_widgets/custom_flatButton.dart';
 import 'package:ur_buddy_3/common_widgets/custom_textField.dart';
 import 'package:ur_buddy_3/models/classified.dart';
@@ -21,17 +25,20 @@ class _SellPageBodyState extends State<SellPageBody> {
   var _subTitle = '';
   var _description = '';
   var _price = '';
-  var _condition = '';
+  var _condition = 1.0;
 
   bool _isLoading = false;
 
-  Future<void> _submitClassified() async {
+  Future<void> _submitClassified(ctx) async {
     if (_title.isEmpty ||
         _subTitle.isEmpty ||
         _description.isEmpty ||
-        _price.isEmpty ||
-        _condition.isEmpty) {
-      return;
+        _price.isEmpty) {
+      return showDialog(
+          context: context,
+          builder: (context) {
+            return CustomAlertDialogue();
+          });
     }
     setState(() {
       _isLoading = true;
@@ -42,7 +49,8 @@ class _SellPageBodyState extends State<SellPageBody> {
       context,
       listen: false,
     ).addClassified(
-      Classified(null, _title, _subTitle, _description, _price, _condition),
+      _title, _subTitle, _description, _price, _condition.toString(), DateTime.now(),
+          context
     );
     setState(() {
       _isLoading = false;
@@ -87,12 +95,20 @@ class _SellPageBodyState extends State<SellPageBody> {
               onChangedPrice: (value) {
                 _price = value;
               },
-              onChangedCondition: (value) {
-                _condition = value;
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            CustomSlider(
+              condition: _condition,
+              onChange: (value) {
+                setState(() {
+                  _condition = value;
+                });
               },
             ),
             SizedBox(
-              height: 100,
+              height: 50,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -102,7 +118,7 @@ class _SellPageBodyState extends State<SellPageBody> {
                     )
                   : CustomFlatButton(
                       label: 'Put On Sale',
-                      onPressed: () => _submitClassified(),
+                      onPressed: () => _submitClassified(context),
                     ),
             ),
             SizedBox(height: 5),

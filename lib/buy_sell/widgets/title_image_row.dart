@@ -36,6 +36,7 @@ class TitleImageRow extends StatelessWidget {
                 height: MediaQuery.of(context).size.width / 5,
                 child: CustomTextField(
                   label: 'Subtitle',
+                  maxlines: 2,
                   onChanged: onChangedSubTitle,
                 ),
               ),

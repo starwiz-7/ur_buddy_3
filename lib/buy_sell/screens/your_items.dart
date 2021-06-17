@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import './sell_item_page.dart';
-import '../widgets/sale_item_card.dart';
+import '../widgets/sell_item_card.dart';
 
 class YourItemsScreen extends StatelessWidget {
   static const routeName = '/your-items';
@@ -10,6 +10,7 @@ class YourItemsScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
           floatingActionButton: FloatingActionButton(
+            elevation: 10,
             onPressed: () =>
                 Navigator.of(context).pushNamed(SellItemPage.routeName),
             child: Icon(Icons.add),

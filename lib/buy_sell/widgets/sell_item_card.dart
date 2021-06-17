@@ -31,8 +31,12 @@ class SaleItemCard extends StatelessWidget {
                   width: 100,
                   margin: const EdgeInsets.all(8),
                   color: Colors.red,
-                  child: Image.network(
-                    imageUrl,
+                  child: imageUrl == null ? 
+                  Image.asset("images/placeholder.png",fit: BoxFit.cover)
+                  : FadeInImage.assetNetwork(
+                    placeholder: "images/placeholder.png",
+                    
+                    image: imageUrl,
                     fit: BoxFit.cover,
                   ),
                 ),

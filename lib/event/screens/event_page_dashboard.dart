@@ -3,7 +3,6 @@ import 'package:ur_buddy_3/event/screens/organise_event.dart';
 import 'package:ur_buddy_3/event/widgets/event_card.dart';
 import 'package:ur_buddy_3/event/widgets/option_card_widget.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class EventPageDashboard extends StatefulWidget {
   @override

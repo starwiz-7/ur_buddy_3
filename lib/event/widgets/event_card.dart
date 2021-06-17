@@ -14,7 +14,9 @@ class EventCard extends StatelessWidget {
                 height: 230,width: double.infinity,
                 child: ClipRRect(
                   borderRadius: BorderRadius.only(topRight: Radius.circular(10),topLeft: Radius.circular(10)),
-                  child: Image.network("https://d1csarkz8obe9u.cloudfront.net/posterpreviews/movie-poster-template-design-21a1c803fe4ff4b858de24f5c91ec57f_screen.jpg?ts=1574144362",fit: BoxFit.cover,))),
+                  child: FadeInImage.assetNetwork(
+                    placeholder: "images/placeholder.png",
+                    image: "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/movie-poster-template-design-21a1c803fe4ff4b858de24f5c91ec57f_screen.jpg?ts=1574144362",fit: BoxFit.cover,))),
               SizedBox(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 15,horizontal: 10),

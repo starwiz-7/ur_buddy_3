@@ -2,6 +2,8 @@ import 'dart:collection';
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
+import 'package:ur_buddy_3/models/user.dart';
 
 class Classified {
   final String id;
@@ -10,6 +12,8 @@ class Classified {
   final String description;
   final String price;
   final String condition;
+  final DateTime timeStamp;
+  final User createdBy;
   // final User owner;
 
   Classified(
@@ -19,6 +23,7 @@ class Classified {
     this.description,
     this.price,
     this.condition,
+    this.timeStamp, this.createdBy,
     // this.owner,
   );
 }
@@ -34,7 +39,8 @@ class ClassifiedsProvider with ChangeNotifier {
 
   Future<void> fetchAndSetClassifieds() async {
     try {
-      final result = await dbRef.child("3classifieds").get();
+      final result =
+          await dbRef.child("3classifieds").orderByChild("timeStamp").get();
       final LinkedHashMap bodyMap = result.value;
 
       final List<Classified> classifieds = [];
@@ -47,6 +53,8 @@ class ClassifiedsProvider with ChangeNotifier {
           value['description'],
           value['price'],
           value['condition'],
+          DateTime.parse(value['timeStamp']),
+          User(value["createdBy"]["id"],value["createdBy"]["name"],value["createdBy"]["email"])
         );
 
         classifieds.add(classified);
@@ -60,14 +68,21 @@ class ClassifiedsProvider with ChangeNotifier {
     }
   }
 
-  Future<void> addClassified(Classified classified) async {
+  Future<void> addClassified(String title,String subTitle,String description,String price,String condition,DateTime timeStamp,BuildContext context) async {
+    final user = Provider.of<UserProvider>(context,listen: false).user;
     try {
       final obj = {
-        "title": classified.title,
-        "subTitle": classified.subTitle,
-        "descrption": classified.description,
-        "price": classified.price,
-        "condition": classified.condition,
+        "title": title,
+        "subTitle": subTitle,
+        "description": description,
+        "price": price,
+        "condition": condition,
+        "timeStamp": timeStamp.toString(),
+        "createdBy": {
+          "id": user.id,
+          "name" : user.name,
+          "email": user.email
+        }
       };
 
       final result = dbRef.child("3classifieds").push();
@@ -75,13 +90,15 @@ class ClassifiedsProvider with ChangeNotifier {
       await result.set(obj);
 
       final newClassified = Classified(
-        result.key,
-        classified.title,
-        classified.subTitle,
-        classified.description,
-        classified.price,
-        classified.condition,
-      );
+          result.key,
+          title,
+          subTitle,
+          description,
+          price,
+          condition,
+          timeStamp,
+          user
+          );
 
       _classifieds.insert(0, newClassified);
 

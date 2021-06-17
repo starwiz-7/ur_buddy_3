@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:ur_buddy_3/buy_sell/widgets/loader.dart';
+import 'package:ur_buddy_3/models/user.dart';
+import './buy_sell/screens/classified_detail_screen.dart';
 
 import './models/classified.dart';
 import './profile/screens/edit_profile_screen.dart';
@@ -30,6 +33,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (context) => ClassifiedsProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => UserProvider(),
         )
       ],
       child: MaterialApp(
@@ -74,14 +80,15 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        home: HomeScreen(), //SplashScreen(),
+        home: SplashScreen(),
         routes: {
           SignUpScreen.routeName: (context) => SignUpScreen(),
           LoginScreen.routeName: (context) => LoginScreen(),
           HomeScreen.routeName: (context) => HomeScreen(),
           OrganiseEvent.routeName: (context) => OrganiseEvent(),
           SellItemPage.routeName: (context) => SellItemPage(),
-          EditProfile.routeName: (context) => EditProfile()
+          EditProfile.routeName: (context) => EditProfile(),
+          ClassifiedDetailScreen.routeName: (context) => ClassifiedDetailScreen()
         },
       ),
     );
