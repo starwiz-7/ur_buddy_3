@@ -28,10 +28,11 @@ class _EventPageDashboardState extends State<EventPageDashboard> {
                 children: [
                   Text("Good morning", style: theme.appBarTheme.titleTextStyle),
                   IconButton(
-                      icon: Icon(Icons.notifications,
-                          size: 30,
-                          color: theme.appBarTheme.titleTextStyle.color),
-                      onPressed: null)
+                    icon: Icon(Icons.notifications,
+                        size: 30,
+                        color: theme.appBarTheme.titleTextStyle.color),
+                    onPressed: null,
+                  )
                 ],
               ),
             ),

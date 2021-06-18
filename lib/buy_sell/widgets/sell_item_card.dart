@@ -1,17 +1,66 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:ur_buddy_3/models/classified.dart';
 
 class SaleItemCard extends StatelessWidget {
   final String title;
   final String subtitle;
   final String price;
   final String imageUrl;
+  final String id;
 
   const SaleItemCard({
     this.imageUrl,
     this.title,
     this.subtitle,
     this.price,
+    this.id,
   });
+
+  _deleteClassified(BuildContext context, String classifiedId) async {
+    final result = await showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        content: Text(
+          'Are you sure ?',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+            color: Colors.black,
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: Text(
+              'YES',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: Text(
+              'NO',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+    print(result);
+    if (result) {
+      await Provider.of<ClassifiedsProvider>(
+        context,
+        listen: false,
+      ).deleteClassifiedFromId(classifiedId);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +80,13 @@ class SaleItemCard extends StatelessWidget {
                   width: 100,
                   margin: const EdgeInsets.all(8),
                   color: Colors.red,
-                  child: imageUrl == null ? 
-                  Image.asset("images/placeholder.png",fit: BoxFit.cover)
-                  : FadeInImage.assetNetwork(
-                    placeholder: "images/placeholder.png",
-                    
-                    image: imageUrl,
-                    fit: BoxFit.cover,
-                  ),
+                  child: imageUrl == null
+                      ? Image.asset("images/placeholder.png", fit: BoxFit.cover)
+                      : FadeInImage.assetNetwork(
+                          placeholder: "images/placeholder.png",
+                          image: imageUrl,
+                          fit: BoxFit.cover,
+                        ),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,7 +131,7 @@ class SaleItemCard extends StatelessWidget {
             children: [
               Expanded(
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () => _deleteClassified(context, id),
                   child: Text(
                     'Remove',
                     style: TextStyle(color: Colors.white),

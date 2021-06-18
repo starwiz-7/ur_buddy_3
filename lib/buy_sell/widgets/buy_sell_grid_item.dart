@@ -1,21 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:ur_buddy_3/buy_sell/screens/classified_detail_screen.dart';
+import 'package:ur_buddy_3/models/classified.dart';
 import '../../constants.dart';
 
 class BuyPageGridItem extends StatelessWidget {
-  final title;
-  final subtitle;
-  final price;
-  final index;
+  final Classified classified;
   final imageUrl;
+  final int index;
 
-  BuyPageGridItem(
-      {this.title, this.subtitle, this.price, this.index, this.imageUrl});
+  BuyPageGridItem({
+    this.imageUrl,
+    this.classified,
+    this.index,
+  });
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      key: ValueKey(classified.id),
       onTap: () {
-        Navigator.of(context).pushNamed(ClassifiedDetailScreen.routeName,arguments: {"index" : index});
+        Navigator.of(context).pushNamed(
+          ClassifiedDetailScreen.routeName,
+          arguments: {"classified": classified},
+        );
       },
       child: ClipRRect(
         borderRadius: BorderRadius.circular(12),
@@ -50,7 +57,7 @@ class BuyPageGridItem extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 7, vertical: 5),
                   child: Text(
-                    title,
+                    classified.title,
                     maxLines: 1,
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                   ),
@@ -58,7 +65,7 @@ class BuyPageGridItem extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 7),
                   child: Text(
-                    subtitle,
+                    classified.subTitle,
                     maxLines: 2,
                     style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                   ),
@@ -67,7 +74,7 @@ class BuyPageGridItem extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 7, vertical: 10),
                   child: Text(
-                    "₹ $price",
+                    "₹ ${classified.price}",
                     maxLines: 1,
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
                   ),
