@@ -132,6 +132,7 @@ class _LogInFormState extends State<LogInForm> {
               },
             ),
             SizedBox(height: 60),
+            _isLoading ? Center(child: CircularProgressIndicator()) :
             CustomFlatButton(
               label: 'SIGN IN',
               onPressed: _logIn,

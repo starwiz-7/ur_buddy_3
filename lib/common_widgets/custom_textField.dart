@@ -15,22 +15,25 @@ class CustomTextField extends StatefulWidget {
   final IconData prefixIcon;
   final String suffixtext;
   final initialValue;
+  final inputFormatter;
+  final fontSize;
 
-  CustomTextField({
-    this.suffixtext,
-    this.prefixIcon,
-    this.hasSuffix = false,
-    this.hasNumInput = false,
-    this.hasPrefix = false,
-    this.maxlines = 1,
-    this.label,
-    this.isPassword = false,
-    this.onChanged,
-    this.validator,
-    this.errorText,
-    this.isLast = false,
-    this.initialValue
-  });
+  CustomTextField(
+      {this.suffixtext,
+      this.prefixIcon,
+      this.hasSuffix = false,
+      this.hasNumInput = false,
+      this.hasPrefix = false,
+      this.maxlines = 1,
+      this.label,
+      this.isPassword = false,
+      this.onChanged,
+      this.validator,
+      this.errorText,
+      this.isLast = false,
+      this.initialValue,
+      this.inputFormatter, 
+      this.fontSize= 14.0});
 
   @override
   _CustomTextFieldState createState() => _CustomTextFieldState();
@@ -55,6 +58,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 15),
       child: TextFormField(
+      
         keyboardType:
             widget.hasNumInput ? TextInputType.number : TextInputType.text,
         onChanged: widget.onChanged,
@@ -69,6 +73,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         obscureText: widget.isPassword ? !_showPassword : false,
         textInputAction:
             widget.isLast ? TextInputAction.done : TextInputAction.next,
+        inputFormatters: widget.inputFormatter,
         decoration: InputDecoration(
           suffixText: widget.hasSuffix ? widget.suffixtext : null,
           suffixStyle:
@@ -104,6 +109,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           errorBorder: _errorBorder,
           focusedErrorBorder: _errorBorder,
           filled: true,
+          
           labelStyle: TextStyle(
             fontFamily: 'Montserrat',
             fontWeight: FontWeight.w500,
@@ -113,6 +119,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         style: TextStyle(
           color: _theme.accentColor,
           fontWeight: FontWeight.w500,
+          fontSize: widget.fontSize
         ),
         maxLines: widget.maxlines,
         initialValue: widget.initialValue,
