@@ -69,10 +69,8 @@ class BuyItemPage extends StatelessWidget {
                                       (index) {
                                     //print("index $index ${classifieds[index].description}");
                                     return BuyPageGridItem(
-                                      title: classifieds[index].title,
+                                      classified: classifieds[index],
                                       index: index,
-                                      price: classifieds[index].price,
-                                      subtitle: classifieds[index].subTitle,
                                       imageUrl:
                                           "https://rolibooks.com/wp-content/uploads/2021/01/WhatsApp-Image-2020-12-24-at-09.48.54.jpeg",
                                     );
