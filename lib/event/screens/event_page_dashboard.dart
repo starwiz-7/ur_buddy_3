@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ur_buddy_3/event/screens/organise_event.dart';
 import 'package:ur_buddy_3/event/widgets/event_card.dart';
-import 'package:ur_buddy_3/event/widgets/option_card_widget.dart';
+import 'package:ur_buddy_3/event/widgets/event_options_card.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 class EventPageDashboard extends StatefulWidget {
@@ -13,9 +12,23 @@ class _EventPageDashboardState extends State<EventPageDashboard> {
   SwiperController _pageViewController = SwiperController();
   int _index = 0;
 
+  String greetingsGenerator() {
+    final hour = DateTime.now().hour;
+    if (hour >= 4 && hour < 12) {
+      return "Good Morning";
+    } else if (hour >= 12 && hour < 17) {
+      return "Good Afternoon";
+    } else if (hour >= 17 && hour < 23) {
+      return "Good Evening";
+    } else {
+      return "Go Sleep";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: SingleChildScrollView(
         child: Column(
@@ -26,11 +39,14 @@ class _EventPageDashboardState extends State<EventPageDashboard> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Good morning", style: theme.appBarTheme.titleTextStyle),
+                  Text(greetingsGenerator(),
+                      style: theme.appBarTheme.titleTextStyle),
                   IconButton(
-                    icon: Icon(Icons.notifications,
-                        size: 30,
-                        color: theme.appBarTheme.titleTextStyle.color),
+                    icon: Icon(
+                      Icons.notifications,
+                      size: 30,
+                      color: theme.appBarTheme.titleTextStyle.color,
+                    ),
                     onPressed: null,
                   )
                 ],
@@ -38,33 +54,10 @@ class _EventPageDashboardState extends State<EventPageDashboard> {
             ),
             SizedBox(height: 10),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 14),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  OptionCardWidget(
-                    title: "Your Events",
-                    color: Color.fromRGBO(255, 111, 97, 1),
-                    avatar: Text("2",
-                        style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.bold)),
-                  ),
-                  OptionCardWidget(
-                    title: "Intrested",
-                    color: Color.fromRGBO(112, 199, 248, 1),
-                    avatar: Text("2",
-                        style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.bold)),
-                  ),
-                  OptionCardWidget(
-                    title: "Organise",
-                    color: Color.fromRGBO(255, 165, 0, 1),
-                    avatar: Icon(Icons.add, size: 40),
-                    fun: () => Navigator.of(context)
-                        .pushNamed(OrganiseEvent.routeName),
-                  )
-                ],
-              ),
+              margin: EdgeInsets.symmetric(horizontal: 24),
+              height: 200,
+              width: width < 600 ? width : 500,
+              child: EventOptionsCard(),
             ),
             SizedBox(height: 30),
             Padding(

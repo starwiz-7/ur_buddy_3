@@ -30,7 +30,7 @@ import 'package:ur_buddy_3/common_widgets/custom_textField.dart';
       Container(
         width: 80,
         child: CustomTextField(
-          label: 'to',
+          label: 'To',
         ),
       ),
       SizedBox(width: 90.0),
