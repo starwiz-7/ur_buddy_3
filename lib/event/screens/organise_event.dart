@@ -14,23 +14,17 @@ class OrganiseEvent extends StatelessWidget {
           centerTitle: true,
           title: Text(
             'Organise Event',
-            style: TextStyle(
-              fontSize: 28,
-              fontFamily: 'Montserrat',
-              letterSpacing: 1.5,
-              color: Theme.of(context).accentColor,
-              fontWeight: FontWeight.w600,
-            ),
           ),
           leading: IconButton(
             icon: Icon(Icons.arrow_back_ios_sharp),
-            onPressed: () {},
+            onPressed: () => Navigator.of(context).pop(),
           ),
         ),
         body: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
+              SizedBox(height: 20.0),
               Container(
                 padding: EdgeInsets.all(10.0),
                 width: MediaQuery.of(context).size.width / 2,
@@ -74,7 +68,8 @@ class OrganiseEvent extends StatelessWidget {
                 child: CustomFlatButton(
                   label: 'ORGANISE',
                 ),
-              )
+              ),
+              SizedBox(height: 30.0),
             ],
           ),
         ));
