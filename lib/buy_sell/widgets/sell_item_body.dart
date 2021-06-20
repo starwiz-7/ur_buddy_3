@@ -9,13 +9,14 @@ import 'package:ur_buddy_3/buy_sell/widgets/title_image_row.dart';
 import 'package:ur_buddy_3/common_widgets/custom_alert_dialogue.dart';
 import 'package:ur_buddy_3/common_widgets/custom_flatButton.dart';
 import 'package:ur_buddy_3/common_widgets/custom_textField.dart';
+import 'package:ur_buddy_3/services/service_locator.dart';
+import 'package:ur_buddy_3/services/classifieds_service.dart';
 import 'package:ur_buddy_3/models/classified.dart';
 
 class SellPageBody extends StatefulWidget {
   const SellPageBody({
     Key key,
   }) : super(key: key);
-
   @override
   _SellPageBodyState createState() => _SellPageBodyState();
 }
@@ -29,6 +30,7 @@ class _SellPageBodyState extends State<SellPageBody> {
 
   bool _isLoading = false;
 
+  ClassifiedsService _classifiedsService = getIt<ClassifiedsService>();
   Future<void> _submitClassified(ctx) async {
     if (_title.isEmpty ||
         _subTitle.isEmpty ||
@@ -40,10 +42,6 @@ class _SellPageBodyState extends State<SellPageBody> {
             return CustomAlertDialogue();
           });
     }
-    setState(() {
-      _isLoading = true;
-    });
-    FocusScope.of(context).unfocus();
     print("$_title, $_subTitle, $_description, $_price, $_condition");
     await Provider.of<ClassifiedsProvider>(
       context,
@@ -52,6 +50,31 @@ class _SellPageBodyState extends State<SellPageBody> {
       _title, _subTitle, _description, _price, _condition.toString(), DateTime.now(),
           context
     );
+  }
+
+  //Pre advertisement processing
+  _postingProcess(ctx) async {
+    setState(() {
+      _isLoading = true;
+    });
+    FocusScope.of(context).unfocus();
+    //check current add pool
+    int adPool = await _classifiedsService.isAdAvailable();
+    if (adPool == 0) {
+      if (await _classifiedsService.mineAd()) {
+        //post ad
+        _classifiedsService.decrementAdPool();
+        _submitClassified(ctx);
+      } else {
+        //No ads available
+        //TODO: Add popup for this
+        print("No ad quota available");
+      }
+    } else {
+      //post ad
+      _classifiedsService.decrementAdPool();
+      _submitClassified(ctx);
+    }
     setState(() {
       _isLoading = false;
     });
@@ -118,7 +141,7 @@ class _SellPageBodyState extends State<SellPageBody> {
                     )
                   : CustomFlatButton(
                       label: 'Put On Sale',
-                      onPressed: () => _submitClassified(context),
+                      onPressed: () => _postingProcess(context),
                     ),
             ),
             SizedBox(height: 5),
