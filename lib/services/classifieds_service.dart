@@ -21,7 +21,7 @@ class ClassifiedsService {
   Future<bool> mineAd() {
     return _database
         .child("3classifieds")
-        .orderByChild("timestamp")
+        .orderByChild("timeStamp")
         .endAt(new DateTime.now().microsecondsSinceEpoch - 9 * _oneDay)
         .limitToFirst(2)
         .once()

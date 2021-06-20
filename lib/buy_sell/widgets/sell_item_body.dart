@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ur_buddy_3/buy_sell/widgets/custom_slider.dart';
@@ -47,7 +45,7 @@ class _SellPageBodyState extends State<SellPageBody> {
       context,
       listen: false,
     ).addClassified(
-      _title, _subTitle, _description, _price, _condition.toString(), DateTime.now(),
+      _title, _subTitle, _description, _price, _condition.toString(),new DateTime.now().microsecondsSinceEpoch,
           context
     );
   }

@@ -13,7 +13,7 @@ class Classified {
   final String description;
   final String price;
   final String condition;
-  final DateTime timeStamp;
+  final int timeStamp;
   final User createdBy;
   // final User owner;
 
@@ -61,7 +61,7 @@ class ClassifiedsProvider with ChangeNotifier {
             value['description'],
             value['price'],
             value['condition'],
-            DateTime.parse(value['timeStamp']),
+            value['timeStamp'],
             User(value["createdBy"]["id"], value["createdBy"]["name"],
                 value["createdBy"]["email"]));
 
@@ -84,7 +84,7 @@ class ClassifiedsProvider with ChangeNotifier {
       String description,
       String price,
       String condition,
-      DateTime timeStamp,
+      int timeStamp,
       BuildContext context) async {
     final user = Provider.of<UserProvider>(context, listen: false).user;
     try {
@@ -94,7 +94,7 @@ class ClassifiedsProvider with ChangeNotifier {
         "description": description,
         "price": price,
         "condition": condition,
-        "timeStamp": timeStamp.toString(),
+        "timeStamp": timeStamp,
         "createdBy": {"id": user.id, "name": user.name, "email": user.email}
       };
 
